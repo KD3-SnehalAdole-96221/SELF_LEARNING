@@ -15,33 +15,30 @@
 
 #include <iostream>
 using namespace std;
-
-class Laptop
+class laptop
 {
-    private:
+private:
     int brandId;
-    float price;
+    double price;
 
-    public:
-    Laptop(void):brandId(1),price(50000)
+public:
+    laptop() : brandId(1), price(50000.0)
     {
-        cout<<"Laptop Constructor called"<<endl;
-
+        cout << "Laptop Constructor Called" << endl;
     }
-    void display(void)
+    ~laptop()
     {
-        cout<<"Brand Id: "<<brandId<<endl;
-        cout<<"Price: "<<price<<endl;
+        cout << "Laptop Destructor Called" << endl;
     }
-    ~Laptop()
+    void display()
     {
-        cout<<"Laptop Destructor Called"<<endl;
+        cout << "Brand ID: " << brandId << endl;
+        cout << "Price: " << price << endl;
     }
-
 };
-
 int main()
 {
-    Laptop l1;
+    laptop l1;
     l1.display();
+    return 0;
 }

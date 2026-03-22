@@ -62,43 +62,47 @@
 
 
 
-#include <iostream>
+#include<iostream>
 using namespace std;
+int my_strlen(const char *str)
+{
+    int count = 0;
 
-// Function Prototypes
-int my_strlen(const char* str);
-char* my_strcpy(char* dest, const char* src);
+    while(str[count] != '\0')
+    {
+        count++;
+    }
 
-int main() {
-    char source[] = "Gemini AI";
-    char destination[20];
+    return count;
+}
 
-    // Testing our custom strlen
-    int length = my_strlen(source);
-    cout << "Length of '" << source << "' is: " << length << endl;
+void my_strcpy(char *dest, const char *src)
+{
+    int i = 0;
 
-    // Testing our custom strcpy
+    while(src[i] != '\0')
+    {
+        dest[i] = src[i];
+        i++;
+    }
+
+    dest[i] = '\0';
+}
+
+int main()
+{
+    char source[50];
+    char destination[50];
+
+    cout<<"Enter string: ";
+    cin>>source;
+
     my_strcpy(destination, source);
-    cout << "Destination after copy: " << destination << endl;
+
+    int length = my_strlen(source);
+
+    cout<<"\nCopied String: "<<destination<<endl;
+    cout<<"Length of string: "<<length<<endl;
 
     return 0;
-}
-
-int my_strlen(const char* str) {
-    int length = 0;
-    while (*(str + length) != '\0') { // Using pointer arithmetic style
-        length++;
-    }
-    return length;
-}
-
-char* my_strcpy(char* dest, const char* src) {
-    char* start = dest;
-    while (*src != '\0') {
-        *dest = *src; // Copy value at current source pointer to dest pointer
-        dest++;
-        src++;
-    }
-    *dest = '\0'; // Seal the destination string
-    return start;
 }
