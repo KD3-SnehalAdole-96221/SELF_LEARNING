@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    
+</head>
+
+<body>
+    <div class="container">
+        <button onclick="getdata()" class="btn btn-primary" id="getdata">get data</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>name</th>
+                    <th>category</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function displayData(products) {
+            const tbody = document.getElementById('tbody')
+            tbody.innerHTML = ''
+            for (let p of products) {
+                const row = `<tr>
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                    <td>${p.category}</td>
+                    <td>${p.price}</td>
+                    </tr>`
+                tbody.innerHTML += row
+            }
+        }
+        function getdata() {
+             fetch('http://127.0.0.1:5500/day8/data.json')
+             .then((response)=>response.json())
+             .then((Product)=>displayData(Product))
+             .catch((error)=>console.log(error))
+         
+
+           
+            
+        }
+    </script>
+
+</body>
+
+</html>

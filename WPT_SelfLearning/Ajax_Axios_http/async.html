@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div class="container">
+        <h2 class="m-2">Using async await.. getting data from data.json</h2>
+        <button class="btn btn-primary m-3" onclick="getData()">Get Data</button>
+        <hr>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#id</th>
+                    <th>name</th>
+                    <th>category</th>
+                    <th>price</th>
+                </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+     <script>
+
+        function displayData(products) {
+            const tbody = document.getElementById('tbody')
+            tbody.innerHTML = ''
+            for (let p of products) {
+                const row = `<tr>
+                    <td>${p.id}</td>
+                    <td>${p.name}</td>
+                    <td>${p.category}</td>
+                    <td>${p.price}</td>
+                    </tr>`
+                tbody.innerHTML += row
+            }
+        }
+        async function getData(){
+                 const response = await fetch('http://127.0.0.1:5500/day8/data.json')
+                 const data=await response.json()
+                 displayData(data)
+        }
+    </script>
+</body>
+</html>

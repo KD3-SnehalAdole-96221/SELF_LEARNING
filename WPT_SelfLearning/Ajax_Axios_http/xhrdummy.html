@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<body>
+    <div class="container">
+        <button onclick="getdata()" class="btn btn-primary" id="getdata">get data</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Age</th>
+                </tr>
+
+
+
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function display(data)
+        {
+            const tbody=document.getElementById('tbody');
+            tbody.innerHTML=''
+            for(let e of data)
+            {
+                  const row=`
+            <tr>
+                <td>${e.id}</td>
+                <td>${e.firstName}</td>
+                <td>${e.lastName}</td>
+                <td>${e.age}</td>
+            </tr>
+            `
+            tbody.innerHTML+=row
+            }
+          
+
+        }
+
+
+        function getdata() {
+            const xhr = new XMLHttpRequest();
+            xhr.open('get', 'https://dummyjson.com/users')
+            xhr.send()
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    console.log(xhr.response);
+                    const data=JSON.parse(xhr.response).users;
+                    display(data)
+                }
+            }
+        }
+    </script>
+
+
+
+
+
+
+</body>
+
+</html>
